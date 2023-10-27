@@ -11,7 +11,7 @@ export default function Home() {
       <div className="text-justify w-[90vw] text-md my-5 z-10
         lg:text-lg lg:text-center
         ">
-        Welcome to Hot Confessions, the ultimate platform where you can liberate your thoughts, secrets, and stories without fear or judgment. Whether you have a deep, dark confession weighing on your mind or a heartwarming tale you're itching to share, Hot Confessions provides a safe and anonymous space for you to do just that.
+        Welcome to Hot Confessions, the ultimate platform where you can liberate your thoughts, secrets, and stories without fear or judgment. Whether you have a deep, dark confession weighing on your mind or a heartwarming tale you&apos;re itching to share, Hot Confessions provides a safe and anonymous space for you to do just that
       </div>
 
       <ConfessionBox />
