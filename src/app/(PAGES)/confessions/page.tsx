@@ -19,7 +19,6 @@ const Confessions = () => {
       }
       catch (err) {
         console.log(err)
-        router.push("/")
       }
     }
     fetchConfessions()
