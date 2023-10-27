@@ -12,7 +12,8 @@ const Confessions = () => {
 
   useEffect(() => {
     fetch("/api/fetchConfessions", {
-      method: "GET"
+      method: "GET",
+      cache: "no-store"
     })
       .then(response => {
         if (response.ok)
@@ -60,3 +61,5 @@ const Confessions = () => {
 }
 
 export default Confessions;
+export const dynamic = "force-dynamic"
+export const 
