@@ -2,33 +2,27 @@
 import { useEffect, useState } from "react";
 import ConfessionCard from "@/app/components/Card";
 import Loader from "@/app/components/Loader";
-import { CardItemProps } from "@/app/types/types"
 import AddConfession from "@/app/components/AddConfession";
+import { databases } from "@/appwrite/config";
+import { Models, Query } from "appwrite";
 import { useRouter } from "next/navigation";
 
 const Confessions = () => {
-  const [allConfessions, setAllConfessions] = useState([]);
+  const [allConfessions, setAllConfessions] = useState<Models.Document[]>([]);
   const router = useRouter()
 
   useEffect(() => {
-    fetch("/api/fetchConfessions", {
-      method: "GET",
-      cache: "no-store"
-    })
-      .then(response => {
-        if (response.ok)
-          return response.json()
-        else
-          return
-      })
-      .then(data => {
-        setAllConfessions(data)
-      })
-      .catch(err => {
+    const fetchConfessions = async () => {
+      try {
+        const info = await databases.listDocuments(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_COLLECTION_ID!, [Query.orderDesc("$createdAt")])
+        setAllConfessions(info.documents)
+      }
+      catch (err) {
         console.log(err)
         router.push("/")
-
-      })
+      }
+    }
+    fetchConfessions()
   }, [])
 
   return (
@@ -37,7 +31,7 @@ const Confessions = () => {
 
         <div className="flex flex-wrap justify-center items-center lg:gap-24 gap-5 w-full h-full overflow-auto absolute py-10">
           {allConfessions.length > 0
-            ? allConfessions.map((item: CardItemProps, index) => {
+            ? allConfessions.map((item: Models.Document, index) => {
               const cmt = item && item.comments ? item.comments.length : 0;
               return (
                 <ConfessionCard
@@ -62,3 +56,4 @@ const Confessions = () => {
 
 export default Confessions;
 export const dynamic = "force-dynamic"
+export const revalidate = 0;

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon, PinterestShareButton, PinterestIcon } from "next-share";
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from "next-share";
 import { usePathname } from "next/navigation"
 import { ShowToast } from "@/app/components/Alert";
 import { ParamsType, UserDataType } from "@/app/types/types"

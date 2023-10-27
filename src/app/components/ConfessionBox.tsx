@@ -1,5 +1,5 @@
 "use client"
-// import Link from "next/link";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ShowToast } from "./Alert";
 
@@ -52,9 +52,9 @@ const ConfessionBox = () => {
             </button>
         </div>
         <div className="my-4">
-          <a href="/confessions">
-            <button className="border-[3px] border-black py-2 px-5 overflow-hidden bg-accent-yellow font-medium text-xl" type="submit">See all Confessions</button>
-          </a>
+          <Link href="/confessions">
+            <button className="border-[3px] border-black py-2 px-5 overflow-hidden bg-accent-yellow font-medium text-xl" type="button">See all Confessions</button>
+          </Link>
         </div>
       </form>
     </>
