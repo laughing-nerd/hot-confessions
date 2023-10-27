@@ -52,9 +52,7 @@ const ConfessionBox = () => {
             </button>
         </div>
         <div className="my-4">
-          <Link href="/confessions">
-            <button className="border-[3px] border-black py-2 px-5 overflow-hidden bg-accent-yellow font-medium text-xl" type="button">See all Confessions</button>
-          </Link>
+          <Link href="/confessions" className="border-[3px] border-black py-2 px-5 overflow-hidden bg-accent-yellow font-medium text-xl">See all Confessions</Link>
         </div>
       </form>
     </>
