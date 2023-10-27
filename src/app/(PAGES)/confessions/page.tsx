@@ -4,9 +4,12 @@ import ConfessionCard from "@/app/components/Card";
 import Loader from "@/app/components/Loader";
 import { CardItemProps } from "@/app/types/types"
 import AddConfession from "@/app/components/AddConfession";
+import { useRouter } from "next/navigation";
 
 const Confessions = () => {
   const [allConfessions, setAllConfessions] = useState([]);
+  const router = useRouter()
+
   useEffect(() => {
     fetch("/api/fetchConfessions", {
       method: "GET"
@@ -20,7 +23,11 @@ const Confessions = () => {
       .then(data => {
         setAllConfessions(data)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+        router.push("/")
+
+      })
   }, [])
 
   return (

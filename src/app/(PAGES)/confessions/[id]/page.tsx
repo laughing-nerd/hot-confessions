@@ -9,11 +9,13 @@ import Link from "next/link";
 import { client } from "@/appwrite/config";
 import TimeDiff from "@/app/components/TimeDiff";
 import { Models } from "appwrite";
+import { useRouter } from "next/navigation";
 
 const Page = (props: ParamsType) => {
   const [showSpinner, setShowSpinner] = useState(false)
   const comment = useRef<HTMLInputElement>(null!)
   const [userData, setUserData] = useState<UserDataType & Models.Document>()
+  const router = useRouter()
 
   useEffect(() => {
     fetch("/api/findUser", {
@@ -22,11 +24,15 @@ const Page = (props: ParamsType) => {
     })
       .then(resp => resp.json())
       .then(data => setUserData(data))
+      .catch(err => {
+        console.log(err)
+        router.push("/confessions")
+      })
 
     const unsubscribe = client.subscribe(`databases.${process.env.NEXT_PUBLIC_DATABASE_ID!}.collections.${process.env.NEXT_PUBLIC_COLLECTION_ID!}.documents`, (response) => {
       console.log(response)
       if (response.events.includes("databases.*.collections.*.documents.*.update")) {
-        setUserData(response.payload as UserDataType&Models.Document | undefined)
+        setUserData(response.payload as UserDataType & Models.Document | undefined)
       }
 
     })
