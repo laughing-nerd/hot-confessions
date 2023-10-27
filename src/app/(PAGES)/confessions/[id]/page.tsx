@@ -8,11 +8,12 @@ import Loader from "@/app/components/Loader";
 import Link from "next/link";
 import { client } from "@/appwrite/config";
 import TimeDiff from "@/app/components/TimeDiff";
+import { Models } from "appwrite";
 
 const Page = (props: ParamsType) => {
   const [showSpinner, setShowSpinner] = useState(false)
   const comment = useRef<HTMLInputElement>(null!)
-  const [userData, setUserData] = useState<UserDataType>()
+  const [userData, setUserData] = useState<UserDataType & Models.Document>()
 
   useEffect(() => {
     fetch("/api/findUser", {
@@ -25,7 +26,7 @@ const Page = (props: ParamsType) => {
     const unsubscribe = client.subscribe(`databases.${process.env.NEXT_PUBLIC_DATABASE_ID!}.collections.${process.env.NEXT_PUBLIC_COLLECTION_ID!}.documents`, (response) => {
       console.log(response)
       if (response.events.includes("databases.*.collections.*.documents.*.update")) {
-        setUserData(response.payload as UserDataType | undefined)
+        setUserData(response.payload as UserDataType&Models.Document | undefined)
       }
 
     })
@@ -77,10 +78,8 @@ const Page = (props: ParamsType) => {
           <div className="my-3 flex gap-3 items-center justify-center">
             <span className="font-bold lg:text-xl">Share on&nbsp;</span>
             <FacebookShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`} hashtag={'#confession'}><FacebookIcon size={32} round /></FacebookShareButton>
-            <WhatsappShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`} hashtag={'#confession'}><WhatsappIcon size={32} round /></WhatsappShareButton>
-            <TwitterShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`} hashtag={'#confession'}><TwitterIcon size={32} round /></TwitterShareButton>
-            <PinterestShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`} hashtag={'#confession'}><PinterestIcon size={32} round /></PinterestShareButton>
-
+            <WhatsappShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`}><WhatsappIcon size={32} round /></WhatsappShareButton>
+            <TwitterShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`}><TwitterIcon size={32} round /></TwitterShareButton>
           </div>
 
           <div className="my-3 flex justify-center items-center gap-3">
