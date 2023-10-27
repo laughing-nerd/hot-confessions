@@ -62,4 +62,3 @@ const Confessions = () => {
 
 export default Confessions;
 export const dynamic = "force-dynamic"
-export const 
