@@ -10,15 +10,12 @@ const redis = new Redis({
 })
 const ratelimit = new Ratelimit({
   redis: redis,
-  limiter: Ratelimit.fixedWindow(1, "60 s"),
+  limiter: Ratelimit.fixedWindow(1, "20 s"),
 });
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("X-forwarded-for") ?? ""
   const result = await ratelimit.limit(ip)
-
-  console.log(result.limit)
-  console.log(result.remaining)
   if (!result.success) {
     return new NextResponse(JSON.stringify({ success: false, message: "Too many requests! Please try again later" }), {
       status: 429,
