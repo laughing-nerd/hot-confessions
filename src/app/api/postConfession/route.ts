@@ -4,7 +4,10 @@ import { databases } from "@/appwrite/config";
 
 export async function POST(request: NextRequest) {
   const ip = request.ip
+  const ip2 = request.headers.get("X-forwarded-for") ?? ""
   console.log(ip)
+  console.log(ip2)
+  
   const confession = await request.json();
   if (confession.length != 0){
     try{
