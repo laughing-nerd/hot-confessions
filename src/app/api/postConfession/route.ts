@@ -1,12 +1,25 @@
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { ID } from "appwrite"; 
 import { databases } from "@/appwrite/config";
 
+const redis = new Redis({
+  url: 'UPSTASH_REDIS_URL',
+  token: 'UPSTASH_REDIS_TOKEN',
+})
+const ratelimit = new Ratelimit({
+  redis: redis,
+  limiter: Ratelimit.fixedWindow(1, "5 s"),
+});
+
 export async function POST(request: NextRequest) {
-  const ip = request.ip
-  const ip2 = request.headers.get("X-forwarded-for") ?? ""
-  console.log(ip)
-  console.log(ip2)
+  const ip = request.headers.get("X-forwarded-for") ?? ""
+  const result = await ratelimit.limit(ip)
+  if (!result.success){
+    return NextResponse.json({ success: false, message: "Too many requests! Please try again later" })
+  }
+  
   
   const confession = await request.json();
   if (confession.length != 0){
@@ -18,9 +31,9 @@ export async function POST(request: NextRequest) {
     }
     catch(err){
       console.log(err)
-      return NextResponse.json({ success: false });
+      return NextResponse.json({ success: false, message: "Something went wrong! Your confession couldn't be added" });
     }
     return NextResponse.json({ success: true });
   }
-  return NextResponse.json({ success: false });
+  return NextResponse.json({ success: false, message: "You are not allowed to send empty confessions. Don't be a wuss and confess something!" });
 }

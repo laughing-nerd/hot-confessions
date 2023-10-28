@@ -14,14 +14,14 @@ const ConfessionBox = () => {
       method: "POST",
       body: JSON.stringify(confession)
     });
-    const { success } = await response.json();
-    if (success) {
+    const res = await response.json();
+    if (res.success) {
       ShowToast({ message: "Hooray🥳 Your confession has been added", category: "success" })
       setConfession("");
       setShowSpinner(false)
     }
     else {
-      ShowToast({ message: "Something went wrong! Your confession couldn't be added", category: "error" })
+      ShowToast({ message: res.message, category: "error" })
       setShowSpinner(false)
     }
   }
