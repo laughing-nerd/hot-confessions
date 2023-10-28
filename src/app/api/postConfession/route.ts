@@ -3,7 +3,8 @@ import { ID } from "appwrite";
 import { databases } from "@/appwrite/config";
 
 export async function POST(request: NextRequest) {
-
+  const ip = request.ip
+  console.log(ip)
   const confession = await request.json();
   if (confession.length != 0){
     try{
