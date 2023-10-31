@@ -76,26 +76,26 @@ const Page = (props: ParamsType) => {
       {userData !== undefined ?
         <div className="flex flex-col relative lg:justify-between h-full lg:flex-row bg-secondary p-4 overflow-hidden">
           <div className="py-4">
-            <div className="h-[33vh] lg:h-[45vh] lg:w-[55vw] bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_rgb(0,0,0)] p-5 break-words overflow-y-auto animate-load">
+            <div className="h-[33vh] lg:h-[48vh] lg:w-[55vw] bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_rgb(0,0,0)] p-5 break-words overflow-y-auto animate-load">
               <div className="flex flex-col h-full justify-between">
                 <div>{userData.confession}</div>
                 <div className="text-accent-green text-right"><TimeDiff createdAt={userData.$createdAt} /></div>
               </div>
             </div>
 
-            <div className="my-3 flex gap-3 items-center justify-center animate-load">
+            <div className="my-3 lg:w-[55vw] flex gap-3 items-center justify-center animate-load">
               <span className="font-bold lg:text-xl">Share on&nbsp;</span>
               <FacebookShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`} hashtag={'#confession'}><FacebookIcon size={32} round /></FacebookShareButton>
               <WhatsappShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`}><WhatsappIcon size={32} round /></WhatsappShareButton>
               <TwitterShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`}><TwitterIcon size={32} round /></TwitterShareButton>
             </div>
 
-            <div className="my-3 flex justify-center items-center gap-3">
+            <div className="my-3 lg:w-[55vw] flex justify-center items-center gap-3">
               <Link className="bg-accent-red border-2 border-black py-1 text-sm px-3 lg:text-lg hover:bg-accent-red-dark transition-all duration-[0.1s]" href="/confessions">👈🏼 See all confessions</Link>
               <Link className="bg-accent-red border-2 border-black py-1 text-sm px-3 lg:text-lg hover:bg-accent-red-dark transition-all duration-[0.1s]" href="/">✏️  Write a confession</Link>
             </div>
 
-            <div className="hidden lg:flex my-20 px-5 items-center justify-center gap-3">
+            <div className="hidden lg:w-[55vw] lg:flex my-20 items-center justify-center gap-3 animate-load">
               <Image src="/amongus.gif" height={128} width={128} alt="amongus" />
               <div className="text-xl">Try not to spill the beans even if you know who this person is 😜</div>
             </div>
