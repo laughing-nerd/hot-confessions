@@ -18,6 +18,7 @@ const Page = (props: ParamsType) => {
   const comment = useRef<HTMLInputElement>(null!)
   const [userData, setUserData] = useState<UserDataType & Models.Document>()
   const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     fetch("/api/findUser", {
@@ -84,9 +85,9 @@ const Page = (props: ParamsType) => {
 
             <div className="my-3 flex gap-3 items-center justify-center animate-load">
               <span className="font-bold lg:text-xl">Share on&nbsp;</span>
-              <FacebookShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`} hashtag={'#confession'}><FacebookIcon size={32} round /></FacebookShareButton>
-              <WhatsappShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`}><WhatsappIcon size={32} round /></WhatsappShareButton>
-              <TwitterShareButton url={`${process.env.NEXT_PUBLIC_URL!}${usePathname()}`}><TwitterIcon size={32} round /></TwitterShareButton>
+              <FacebookShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`} hashtag={'#confession'}><FacebookIcon size={32} round /></FacebookShareButton>
+              <WhatsappShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`}><WhatsappIcon size={32} round /></WhatsappShareButton>
+              <TwitterShareButton url={`${process.env.NEXT_PUBLIC_URL!}${pathname}`}><TwitterIcon size={32} round /></TwitterShareButton>
             </div>
 
             <div className="my-3 flex justify-center items-center gap-3">
