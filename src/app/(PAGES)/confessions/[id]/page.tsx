@@ -33,7 +33,7 @@ const Page = (props: ParamsType) => {
       })
 
     const unsubscribe = client.subscribe(`databases.${process.env.NEXT_PUBLIC_DATABASE_ID!}.collections.${process.env.NEXT_PUBLIC_COLLECTION_ID!}.documents`, (response) => {
-      if (response.events.includes("databases.*.collections.*.documents.*.update")) {
+      if (response.events.includes(`databases.*.collections.*.documents.${props.params.id}.update`)) {
         setUserData(response.payload as UserDataType & Models.Document | undefined)
       }
 
