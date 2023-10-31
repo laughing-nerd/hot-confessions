@@ -7,8 +7,8 @@ export default function Home() {
       <svg width="250" height="200" viewBox="0 0 383 325" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute right-0 top-0">
         <path d="M258.997 -335.004L251.538 -313.541C230.199 -252.128 169.443 -213.152 104.69 -219.334L82.0585 -221.494L88.655 -199.819C107.529 -137.802 81.1779 -70.7678 24.9632 -37.7962L5.3161 -26.2726L23.4478 -12.6652C75.3264 26.2684 93.445 95.7549 67.2411 155.286L58.0828 176.092L80.8239 176.434C145.891 177.413 201.559 222.811 215.375 286.162L220.203 308.304L238.867 295.25C292.27 257.899 364.223 261.868 412.782 304.842L429.753 319.862L437.211 298.398C458.551 236.985 519.307 198.009 584.06 204.191L606.691 206.352L600.095 184.676C581.221 122.659 607.572 55.6252 663.787 22.6537L683.434 11.1301L665.302 -2.47732C613.423 -41.4109 595.305 -110.897 621.509 -170.429L630.667 -191.235L607.926 -191.577C542.859 -192.555 487.191 -237.953 473.375 -301.305L468.547 -323.446L449.882 -310.392C396.48 -273.042 324.526 -277.011 275.968 -319.985L258.997 -335.004Z" fill="#A259FF" stroke="black" strokeWidth="5" />
       </svg>
-      <div className="text-center font-extrabold text-4xl md:text-5xl z-10">Hot Confessions &#128293;</div>
-      <div className="text-justify w-[90vw] text-md my-5 z-10
+      <div className="text-center font-extrabold text-4xl md:text-5xl z-10 animate-load">Hot Confessions &#128293;</div>
+      <div className="text-justify w-[90vw] text-md my-5 z-10 animate-load
         lg:text-lg lg:text-center
         ">
         Welcome to Hot Confessions, the ultimate platform where you can liberate your thoughts, secrets, and stories without fear or judgment. Whether you have a deep, dark confession weighing on your mind or a heartwarming tale you&apos;re itching to share, Hot Confessions provides a safe and anonymous space for you to do just that

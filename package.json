@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
+    "@types/emoji-mart": "^3.0.11",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -16,6 +19,7 @@
     "@upstash/redis": "^1.24.0",
     "appwrite": "^13.0.0",
     "autoprefixer": "10.4.15",
+    "emoji-mart": "^5.5.2",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",

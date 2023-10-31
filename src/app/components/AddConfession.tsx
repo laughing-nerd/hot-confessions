@@ -3,7 +3,8 @@ import Link from "next/link"
 const AddConfession = () => {
   return (
     <Link href="/">
-      <div className="absolute right-5 bottom-5 cursor-pointer z-20" title="Write a confession">
+      <div className="absolute right-5 bottom-5 cursor-pointer z-20 animate-load" title="Write a confession">
+
         <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 62 62" fill="none">
           <g filter="url(#filter0_dd_1_267)">
             <circle cx="31" cy="29" r="27" fill="url(#paint0_linear_1_267)" />

@@ -27,7 +27,7 @@ const Confessions = () => {
 
   return (
     <>
-      <div className="relative bg-secondary h-full w-full">
+      <div className="relative bg-secondary h-full w-full overflow-hidden">
 
         <div className="flex flex-wrap justify-center items-center lg:gap-24 gap-5 w-full h-full overflow-auto absolute py-10">
           {allConfessions.length > 0

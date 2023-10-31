@@ -1,10 +1,12 @@
 "use client"
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { ShowToast } from "./Alert";
+import EmojiPicker from "./EmojiPicker";
 
 const ConfessionBox = () => {
-  const [confession, setConfession] = useState("");
+  const confession = useRef<HTMLTextAreaElement>(null!)
+  const characterCount = useRef<HTMLSpanElement>(null!)
   const [showSpinner, setShowSpinner] = useState(false)
 
   const postConfession = async (e: FormEvent<HTMLFormElement>) => {
@@ -12,12 +14,12 @@ const ConfessionBox = () => {
     setShowSpinner(true)
     const response: Response = await fetch("/api/postConfession", {
       method: "POST",
-      body: JSON.stringify(confession)
+      body: JSON.stringify(confession.current.value)
     });
     const res = await response.json();
     if (res.success) {
       ShowToast({ message: "Hooray🥳 Your confession has been added", category: "success" })
-      setConfession("");
+      confession.current.value=""
       setShowSpinner(false)
     }
     else {
@@ -28,17 +30,24 @@ const ConfessionBox = () => {
 
   return (
     <>
-      <form className="flex items-center flex-col z-10" onSubmit={postConfession}>
+      <form className="flex items-center flex-col z-10 animate-load" onSubmit={postConfession}>
         <div className="relative">
-          <textarea value={confession}
+          <textarea
+            maxLength={2000}
+            ref={confession}
             onChange={(e) => {
-              if (e.target.value.length <= 2000)
-                setConfession(e.target.value)
+              if (e.target.value.length <= 2000) {
+                confession.current.value = e.target.value
+                characterCount.current.innerHTML = e.target.value.length.toString()
+              }
             }}
             className="focus:outline-0 overflow-y-auto resize-none w-[90vw] pt-2 pb-9 px-3 border-[3px] border-black h-[35vh] md:h-[50vh] shadow-[4px_4px_0px_rgb(0,0,0)] bg-white rounded-lg"
             placeholder="Start confessing now!" />
           <div className="flex justify-between bg-white absolute bottom-2 w-full border-l-[3px] border-r-[3px] border-black rounded-b-lg px-3 pb-1">
-            <span className="text-gray-400">{confession.length}/2000</span>
+
+            <EmojiPicker reference={confession} style="hidden lg:block items-center focus:outline-0 py-2 px-1 cursor-pointer" />
+
+            <div className="text-gray-400 flex items-center"><span ref={characterCount}>0</span>/2000</div>
             <button type="submit" disabled={showSpinner}>
               {!showSpinner
                 ? <svg height="30px" width="30px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xmlSpace="preserve">

@@ -18,8 +18,7 @@ const config: Config = {
         'accent-red-dark': '#D24E1E',
         'accent-green': '#0FA958',
         'accent-green-dark': "#0F9958"
-
-      }
+      },
     },
   },
   plugins: [],
